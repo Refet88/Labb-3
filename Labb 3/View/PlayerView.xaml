@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="Labb_3.View.PlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Labb_3.View"
+             xmlns:converters="clr-namespace:Labb_3.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding DataContext.ConfigurationViewModel.SelectedQuestion.Query, 
+                                  RelativeSource={RelativeSource AncestorType=Window}}"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="20" />
+
+        <TextBlock Text="{Binding DataContext.ConfigurationViewModel.QuestionStatus, 
+                                  RelativeSource={RelativeSource AncestorType=Window}}"
+                   FontSize="18"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="0,0,0,20" />
+
+        <TextBlock Text="{Binding TimeLeft, Mode=TwoWay}"
+                   FontSize="25"
+                   FontWeight="Bold"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Margin="0,0,10,0" />
+
+        <Button x:Name="A"
+                Grid.Column="0"
+                Grid.Row="2"
+                Margin="140,10,25,10"
+                Command="{Binding OnAnswerSelectedCommand}"
+                CommandParameter="{Binding AnswerA}"
+                Background="{Binding ButtonAColor}"
+                IsEnabled="{Binding CanAnswer}">
+            <TextBlock Text="{Binding AnswerA}" 
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Button>
+
+        <Button x:Name="B"
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="25,10,140,10"
+                Command="{Binding OnAnswerSelectedCommand}"
+                CommandParameter="{Binding AnswerB}"
+                Background="{Binding ButtonBColor}"
+                IsEnabled="{Binding CanAnswer}">
+            <TextBlock Text="{Binding AnswerB}" 
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Button>
+
+        <Button x:Name="C"
+                Grid.Column="0"
+                Grid.Row="3"
+                Margin="140,10,25,10"
+                Command="{Binding OnAnswerSelectedCommand}"
+                CommandParameter="{Binding AnswerC}"
+                Background="{Binding ButtonCColor}"
+                IsEnabled="{Binding CanAnswer}">
+            <TextBlock Text="{Binding AnswerC}" 
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Button>
+
+        <Button x:Name="D"
+                Grid.Column="1"
+                Grid.Row="3"
+                Margin="25,10,140,10"
+                Command="{Binding OnAnswerSelectedCommand}"
+                CommandParameter="{Binding AnswerD}"
+                Background="{Binding ButtonDColor}"
+                IsEnabled="{Binding CanAnswer}">
+            <TextBlock Text="{Binding AnswerD}" 
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Button>
+    </Grid>
+</UserControl>

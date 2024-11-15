@@ -1,0 +1,85 @@
+﻿<Window x:Class="Labb_3.Dialogs.TriviaDialog"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Labb_3.Dialogs"
+      mc:Ignorable="d" 
+      Title="Import Questions From Open Trivia Database" Height="260" Width="320"
+      WindowStartupLocation="CenterScreen"
+      ResizeMode="NoResize">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Category"
+                   FontWeight="Bold"
+                   Margin="10,19,130,0"
+                   Grid.ColumnSpan="1" RenderTransformOrigin="0.59,1.212"/>
+
+        <ComboBox ItemsSource="{Binding Categories}" 
+                  DisplayMemberPath="Name" 
+                  SelectedItem="{Binding SelectedCategory}"
+                  Margin="10,0,10,0" 
+                  VerticalAlignment="Top" 
+                  Height="24" Grid.Row="1"/>
+
+        <TextBlock Text="Difficulty"
+                   FontWeight="Bold"
+                    Margin="10,7,114,5" Grid.Row="2" RenderTransformOrigin="0.497,0.077"/>
+
+        <ComboBox Name="Difficulty" 
+                 ItemsSource="{Binding ActivePack.Difficulties}"
+                 SelectedItem="{Binding ActivePack.Difficulty}"
+                  Margin="10,0,10,0" 
+                  VerticalAlignment="Top" 
+                  Height="24" Grid.Row="3"/>
+        <TextBlock Text="Number Of Questions:"
+                   FontWeight="Bold"
+                   Margin="10,5,60,4" Grid.Row="4"/>
+
+        <Slider x:Name="Number_Of_Questions"
+                    Minimum="1"
+                    Maximum="20"
+                    TickFrequency="1"
+                    IsSnapToTickEnabled="True"
+                    TickPlacement="BottomRight"
+                    Margin="10,0,10,0" Grid.Row="5"
+                    Value="{Binding NumberOfQuestions, Mode=TwoWay}"/>
+
+        <TextBlock Text="{Binding ElementName=Number_Of_Questions, Path=Value, StringFormat='{}{0}'}"
+                   Margin="220,8,10,0" 
+                   Grid.Row="4" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Left" 
+                   Width="14"/>
+
+
+        <Button Content="Import Questions" 
+                Command="{Binding ImportQuestionsCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                Margin="20,40,0,10" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="100" Height="30" Grid.Row="5"/>
+
+        <Button Content="Cancel"
+                IsCancel="True"
+                Margin="190,40,10,10" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="100" Height="30" Grid.Row="5"/>
+
+
+    </Grid>
+</Window>
